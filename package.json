@@ -16,6 +16,7 @@
     "@vitejs/plugin-react": "4.6.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "2.1.1",
+    "framer-motion": "^12.23.5",
     "jiti": "2.4.2",
     "less": "4.3.0",
     "lightningcss": "1.30.1",
