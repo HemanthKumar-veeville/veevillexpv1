@@ -1,5 +1,9 @@
 import { promiseItems, PromiseItem } from "./data";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect } from "react";
+
+import { FaLinkedinIn, FaInstagram } from "react-icons/fa6";
+import TransformTeamsNew from "./TransformTeamsNew";
 
 const bannerVariants = {
   animate: {
@@ -258,7 +262,7 @@ const PlaySection = () => (
 const PromiseSection = () => (
   <section className="relative w-full py-8 sm:py-16 pb-16 sm:pb-32 overflow-hidden">
     <div className="max-w-[1440px] mx-auto px-4 sm:px-6">
-      <h2 className="font-georgia text-3xl sm:text-5xl md:text-[60px] text-[#2d2d2d] tracking-[-1.80px] leading-[1.1] mb-8 sm:mb-[60px] text-center">
+      <h2 className="font-georgia text-3xl sm:text-5xl md:text-[60px] text-[#2d2d2d] tracking-[-1.80px] leading-[1.1] mb-8 sm:mb-[60px] text-left">
         Our Promise
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-x-[30px] md:gap-x-[40px] sm:gap-y-[60px]">
@@ -343,6 +347,323 @@ const PromiseSection = () => (
   </section>
 );
 
+const TransformTeamsSection = () => (
+  <section className="relative w-full py-8 sm:py-16 overflow-hidden">
+    <div className="max-w-[1440px] mx-auto px-4 sm:px-6">
+      <div className="flex flex-col lg:flex-row items-start gap-8 sm:gap-12">
+        <div className="lg:w-1/2 w-full">
+          <h2 className="font-georgia text-3xl sm:text-5xl md:text-[60px] text-[#2d2d2d] tracking-[-1.80px] leading-[1.1] mb-8">
+            How We <br /> Transform Teams
+          </h2>
+          <p className="font-helvetica font-light text-[#888888] text-base sm:text-xl md:text-[25px] tracking-[-0.75px] leading-[1.4] sm:leading-[1.1]">
+            Through doodling, storytelling, filmmaking, crafts, and play, we
+            create immersive experiences that unlock creativity, enhance
+            communication, build leadership capabilities, and foster genuine
+            collaboration. Each program begins with understanding your unique
+            challenges and ends with actionable solutions born from collective
+            insight.
+          </p>
+        </div>
+        <div className="lg:w-1/2 w-full flex justify-center lg:justify-end">
+          <img
+            src="/img/happy-removebg-preview-1.png"
+            alt="Happy team illustration"
+            className="w-full max-w-[667px] h-auto object-contain"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+);
+
+const PremiumCardsSection = () => {
+  const [currentCard, setCurrentCard] = useState(0);
+  const cards = [
+    {
+      image: "/img/left_card.png",
+      rotation: "-rotate-[0.08deg",
+    },
+    {
+      image: "/img/right_card.png",
+      rotation: "rotate-[0.027deg]",
+    },
+  ];
+
+  // Auto-slide every 3 seconds on mobile
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (window.innerWidth < 640) {
+        // Only auto-slide on mobile
+        setCurrentCard((prev) => (prev === 0 ? 1 : 0));
+      }
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <section className="relative w-full overflow-hidden">
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-6">
+        {/* Title */}
+        <div className="mb-8 sm:mb-16">
+          <h2 className="font-georgia text-[32px] sm:text-[38px] lg:text-[44px] text-[#2d2d2d] tracking-[-1.32px] leading-[1.1] max-w-full sm:max-w-[80%] lg:max-w-[60%]">
+            The Premium Cards: Some Serious Fun{" "}
+            <br className="hidden sm:block" /> for slightly older kids
+          </h2>
+        </div>
+
+        {/* Content Container with overlapping elements */}
+        <div className="relative">
+          {/* Mobile Card Slider */}
+          <div className="sm:hidden mb-8">
+            <div className="relative h-[370px] w-full flex justify-center">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentCard}
+                  initial={{ opacity: 0, x: 300 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -300 }}
+                  transition={{ duration: 0.5 }}
+                  className="w-[80%] relative"
+                >
+                  <div
+                    className={`relative h-[370px] transform ${cards[currentCard].rotation}`}
+                  >
+                    <div
+                      className="absolute inset-0 rounded-[27px] shadow-lg"
+                      style={{
+                        backgroundImage: `url('${cards[currentCard].image}')`,
+                        backgroundSize: "cover",
+                        backgroundPosition: "center",
+                      }}
+                    />
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+            </div>
+            {/* Dots Indicator */}
+            <div className="flex justify-center gap-2 mt-4">
+              {cards.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentCard(index)}
+                  className={`w-2 h-2 rounded-full transition-colors ${
+                    currentCard === index ? "bg-[#2d2d2d]" : "bg-[#2d2d2d40]"
+                  }`}
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* Tablet Cards Container (unchanged) */}
+          <div className="hidden sm:flex lg:hidden justify-between mb-8">
+            {/* Left Card */}
+            <div className="w-[45%] relative">
+              <div className="relative h-[270px] sm:h-[350px] md:h-[400px] transform -rotate-[0.08deg]">
+                <div
+                  className="absolute inset-0 rounded-[27px] shadow-lg"
+                  style={{
+                    backgroundImage: "url('/img/left_card.png')",
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                  }}
+                />
+              </div>
+            </div>
+
+            {/* Right Card */}
+            <div className="w-[45%] relative">
+              <div className="relative h-[270px] sm:h-[350px] md:h-[400px] transform rotate-[0.027deg]">
+                <div
+                  className="absolute inset-0 rounded-[27px] shadow-lg"
+                  style={{
+                    backgroundImage: "url('/img/right_card.png')",
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                  }}
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Center Image for Mobile and Tablet */}
+          <div className="lg:hidden w-full max-w-[400px] sm:max-w-[500px] md:max-w-[600px] mx-auto">
+            <img
+              src="/img/goldcards-1.png"
+              alt="Gold cards illustration"
+              className="w-full h-auto"
+            />
+          </div>
+
+          {/* Desktop Layout (unchanged) */}
+          <div className="hidden lg:block min-h-[700px]">
+            {/* Left Card */}
+            <div className="absolute left-0 top-24 z-10 w-[320px]">
+              <div className="relative h-[423px] transform -rotate-[0.08deg]">
+                <div
+                  className="absolute inset-0 rounded-[27px] shadow-lg"
+                  style={{
+                    backgroundImage: "url('/img/left_card.png')",
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                  }}
+                />
+              </div>
+            </div>
+
+            {/* Center Image */}
+            <div className="flex justify-center">
+              <div className="w-full relative z-20 max-w-[650px] h-auto ml-[100px]">
+                <img
+                  src="/img/goldcards-1.png"
+                  alt="Gold cards illustration"
+                  className="w-full h-auto"
+                />
+              </div>
+            </div>
+
+            {/* Right Card */}
+            <div className="absolute right-0 top-24 z-10 w-[306px]">
+              <div className="relative h-[405px] transform rotate-[0.027deg]">
+                <div
+                  className="absolute inset-0 rounded-[27px] shadow-lg"
+                  style={{
+                    backgroundImage: "url('/img/right_card.png')",
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                  }}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const ContactSection = () => (
+  <section className="relative w-full bg-[#2d2d2d] py-16 pb-32 sm:py-24">
+    <div className="max-w-[1440px] mx-auto px-4 sm:px-6 relative pb-[100px]">
+      <h2 className="font-georgia text-[46px] font-bold text-[#FDFDFE] tracking-[-1.38px] leading-[1.1] mb-6">
+        Ready to Rediscover Wonder?
+      </h2>
+      <p className="font-helvetica font-light text-[25px] text-[#FDFDFE] tracking-[-0.75px] leading-[1.1] mb-16">
+        Let's explore how your team can achieve extraordinary results through
+        extraordinary experiences.
+      </p>
+
+      <form className="w-full">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10">
+          {/* First Name & Last Name */}
+          <div>
+            <label className="block font-helvetica text-[#FDFDFE] text-[14px] leading-[20px] mb-3">
+              First Name
+            </label>
+            <input
+              type="text"
+              className="w-full bg-transparent border-b border-[#FDFDFE] pb-2 text-[#FDFDFE] focus:outline-none"
+            />
+          </div>
+          <div>
+            <label className="block font-helvetica text-[#FDFDFE] text-[14px] leading-[20px] mb-3">
+              Last Name
+            </label>
+            <input
+              type="text"
+              className="w-full bg-transparent border-b border-[#FDFDFE] pb-2 text-[#FDFDFE] focus:outline-none"
+            />
+          </div>
+
+          {/* Email & Organisation */}
+          <div>
+            <label className="block font-helvetica text-[#FDFDFE] text-[14px] leading-[20px] mb-3">
+              Email
+            </label>
+            <input
+              type="email"
+              className="w-full bg-transparent border-b border-[#FDFDFE] pb-2 text-[#FDFDFE] focus:outline-none"
+            />
+          </div>
+          <div>
+            <label className="block font-helvetica text-[#FDFDFE] text-[14px] leading-[20px] mb-3">
+              Organisation
+            </label>
+            <input
+              type="text"
+              className="w-full bg-transparent border-b border-[#FDFDFE] pb-2 text-[#FDFDFE] focus:outline-none"
+            />
+          </div>
+
+          {/* Team Size */}
+          <div>
+            <label className="block font-helvetica text-[#FDFDFE] text-[14px] leading-[20px] mb-3">
+              Approximate Team Size
+            </label>
+            <input
+              type="text"
+              className="w-full bg-transparent border-b border-[#FDFDFE] pb-2 text-[#FDFDFE] focus:outline-none"
+            />
+          </div>
+        </div>
+
+        {/* Challenge/Opportunity */}
+        <div className="mt-10 relative">
+          <label className="block font-helvetica text-[#FDFDFE] text-[14px] leading-[20px] mb-3">
+            What challenge or opportunity brings you here?
+          </label>
+          <div className="relative">
+            <textarea className="w-full bg-transparent border-b border-[#FDFDFE] text-[#FDFDFE] focus:outline-none min-h-[100px] font-helvetica font-light text-[14px] leading-[20px] pt-[40px] resize-none" />
+            <span className="absolute top-[40px] left-0 text-[#FDFDFE] font-helvetica font-light text-[14px] leading-[20px] pointer-events-none">
+              Write your message..
+            </span>
+          </div>
+        </div>
+
+        {/* Submit Button */}
+        <button
+          type="submit"
+          className="mt-12 bg-[#FDFDFE] text-[#2d2d2d] font-helvetica font-bold text-[16px] px-6 py-[13px] rounded-[11px] hover:bg-opacity-90 transition-colors"
+        >
+          Send Message
+        </button>
+      </form>
+    </div>
+    <div className="absolute bottom-0 w-full bg-[#FFFFFF]">
+      <div className="container mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 px-4 py-6 sm:py-4 sm:px-6 md:px-8 lg:px-12">
+        {/* Contact Information */}
+        <div className="w-full sm:w-auto">
+          <p className="font-helvetica text-[#465666] text-sm sm:text-base md:text-lg text-center sm:text-left whitespace-normal">
+            <span className="block sm:inline">experiences/veeville</span>
+            <span className="hidden sm:inline"> | </span>
+            <span className="block sm:inline">getpersonal@veeville.com</span>
+            <span className="hidden sm:inline"> | </span>
+            <span className="block sm:inline">veevillexp.com</span>
+          </p>
+        </div>
+
+        {/* Social Icons */}
+        <div className="flex items-center gap-6 mt-4 sm:mt-0">
+          <a
+            href="#"
+            className="text-[#465666] hover:text-[#2d2d2d] transition-colors duration-200"
+            aria-label="Follow us on Instagram"
+          >
+            <FaInstagram size={24} className="w-6 h-6" />
+          </a>
+          <a
+            href="#"
+            className="text-[#465666] hover:text-[#2d2d2d] transition-colors duration-200"
+            aria-label="Connect with us on LinkedIn"
+          >
+            <FaLinkedinIn size={24} className="w-6 h-6" />
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+);
+
 export const Wireframe = (): JSX.Element => {
   return (
     <div className="min-h-screen bg-white overflow-x-hidden">
@@ -351,6 +672,10 @@ export const Wireframe = (): JSX.Element => {
       <QuoteSection />
       <PlaySection />
       <PromiseSection />
+      <TransformTeamsSection />
+      <TransformTeamsNew />
+      <PremiumCardsSection />
+      <ContactSection />
     </div>
   );
 };
