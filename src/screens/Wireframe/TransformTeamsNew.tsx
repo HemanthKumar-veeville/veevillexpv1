@@ -31,7 +31,7 @@ const TransformTeamsNew = () => {
       {/* Magenta Card */}
       <div className="w-[227px] h-auto rounded-[27px] overflow-hidden">
         <img
-          src="/static/img/G1824.png"
+          src="/img/G1824.png"
           alt="Magenta Card"
           className="w-full h-full object-contain"
         />
@@ -40,7 +40,7 @@ const TransformTeamsNew = () => {
       {/* Green Card */}
       <div className="w-[227px] h-auto rounded-[27px] overflow-hidden">
         <img
-          src="/static/img/G1825.png"
+          src="/img/G1825.png"
           alt="Green Card"
           className="w-full h-full object-contain"
         />
@@ -49,7 +49,7 @@ const TransformTeamsNew = () => {
       {/* Orange Card */}
       <div className="w-[227px] h-auto rounded-[27px] overflow-hidden">
         <img
-          src="/static/img/G1826.png"
+          src="/img/G1826.png"
           alt="Orange Card"
           className="w-full h-full object-contain"
         />
@@ -88,7 +88,7 @@ const TransformTeamsNew = () => {
         {/* Center Image */}
         <div className="flex justify-center">
           <img
-            src="/static/img/playcards 1.png"
+            src="/img/playcards 1.png"
             alt="Play cards"
             className="w-[400px] h-auto object-contain"
           />
