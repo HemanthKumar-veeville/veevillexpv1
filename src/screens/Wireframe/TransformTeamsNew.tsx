@@ -28,6 +28,13 @@ const TransformTeamsNew = () => {
 
   const CardSet = () => (
     <>
+      <div className="w-[227px] h-auto rounded-[27px] overflow-hidden">
+        <img
+          src="/img/G1838.png"
+          alt="Red Card"
+          className="w-full h-full object-contain"
+        />
+      </div>
       {/* Magenta Card */}
       <div className="w-[227px] h-auto rounded-[27px] overflow-hidden">
         <img
@@ -51,6 +58,13 @@ const TransformTeamsNew = () => {
         <img
           src="/img/G1826.png"
           alt="Orange Card"
+          className="w-full h-full object-contain"
+        />
+      </div>
+      <div className="w-[227px] h-auto rounded-[27px] overflow-hidden">
+        <img
+          src="/img/G1839.png"
+          alt="Blue Card"
           className="w-full h-full object-contain"
         />
       </div>

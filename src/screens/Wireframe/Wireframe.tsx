@@ -503,7 +503,7 @@ const PremiumCardsSection = () => {
                 <div
                   className="absolute inset-0 rounded-[27px] shadow-lg"
                   style={{
-                    backgroundImage: "url('/img/left_card.png')",
+                    backgroundImage: "url('/img/G1840.png')",
                     backgroundSize: "cover",
                     backgroundPosition: "center",
                   }}
@@ -528,7 +528,7 @@ const PremiumCardsSection = () => {
                 <div
                   className="absolute inset-0 rounded-[27px] shadow-lg"
                   style={{
-                    backgroundImage: "url('/img/right_card.png')",
+                    backgroundImage: "url('/img/G1841.png')",
                     backgroundSize: "cover",
                     backgroundPosition: "center",
                   }}
